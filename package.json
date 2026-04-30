@@ -1,0 +1,43 @@
+{
+  "name": "@fhirnorm/core",
+  "version": "0.1.0",
+  "description": "Convert FHIR R4 resources to plain normalized JSON and back. Supports Patient, Observation, Condition, Encounter and MedicationRequest.",
+  "license": "MIT",
+  "author": "Rohit Ranjan",
+  "keywords": [
+    "fhir",
+    "hl7",
+    "healthcare",
+    "normalizer",
+    "fhir-r4",
+    "fhirnorm",
+    "core"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build && npm run test",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  }
+}
