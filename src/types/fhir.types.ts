@@ -14,6 +14,11 @@ export interface FhirReference {
   display?: string;
 }
 
+export interface FhirIdentifier {
+  system?: string;
+  value?: string;
+}
+
 export interface FhirExtension {
   url?: string;
   valueString?: string;
@@ -51,6 +56,11 @@ export interface FhirAddress {
 export interface FhirAnnotation {
   text?: string;
   time?: string;
+}
+
+export interface FhirPeriod {
+  start?: string;
+  end?: string;
 }
 
 export interface FhirPatient {
@@ -146,9 +156,29 @@ export interface FhirMedicationRequest {
   note?: FhirAnnotation[];
 }
 
+export interface FhirPractitioner {
+  resourceType: "Practitioner";
+  id?: string;
+  identifier?: FhirIdentifier[];
+  active?: boolean;
+  name?: FhirHumanName[];
+  telecom?: FhirContactPoint[];
+  address?: FhirAddress[];
+  gender?: string;
+  birthDate?: string;
+  qualification?: Array<{
+    identifier?: FhirIdentifier[];
+    code?: FhirCodeableConcept;
+    period?: FhirPeriod;
+    issuer?: FhirReference;
+  }>;
+  communication?: FhirCodeableConcept[];
+}
+
 export type FhirResource =
   | FhirPatient
   | FhirObservation
   | FhirCondition
   | FhirEncounter
-  | FhirMedicationRequest;
+  | FhirMedicationRequest
+  | FhirPractitioner;

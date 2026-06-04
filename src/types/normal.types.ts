@@ -85,9 +85,30 @@ export interface NormalizedMedicationRequest {
   note?: string | null;
 }
 
+export interface NormalizedPractitioner {
+  id?: string;
+  resourceType: "Practitioner";
+  identifierSystem?: string | null;
+  identifierValue?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  fullName?: string | null;
+  gender?: string | null;
+  dob?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  address?: NormalizedAddress;
+  active?: boolean;
+  qualificationCode?: string | null;
+  qualificationDisplay?: string | null;
+  qualificationIssuer?: string | null;
+  language?: string | null;
+}
+
 export type NormalizedResource =
   | NormalizedPatient
   | NormalizedObservation
   | NormalizedCondition
   | NormalizedEncounter
-  | NormalizedMedicationRequest;
+  | NormalizedMedicationRequest
+  | NormalizedPractitioner;

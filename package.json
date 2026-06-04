@@ -1,7 +1,7 @@
 {
   "name": "@fhirnorm/core",
   "version": "0.1.0",
-  "description": "Convert FHIR R4 resources to plain normalized JSON and back. Supports Patient, Observation, Condition, Encounter and MedicationRequest.",
+  "description": "Convert FHIR R4 resources to plain normalized JSON and back. Supports Patient, Observation, Condition, Encounter, MedicationRequest and Practitioner.",
   "license": "MIT",
   "author": "Rohit Ranjan",
   "keywords": [

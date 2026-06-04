@@ -3,11 +3,13 @@ import { denormalizeEncounter } from "./denormalizers/encounter";
 import { denormalizeMedicationRequest } from "./denormalizers/medication-request";
 import { denormalizeObservation } from "./denormalizers/observation";
 import { denormalizePatient } from "./denormalizers/patient";
+import { denormalizePractitioner } from "./denormalizers/practitioner";
 import { normalizeCondition } from "./normalizers/condition";
 import { normalizeEncounter } from "./normalizers/encounter";
 import { normalizeMedicationRequest } from "./normalizers/medication-request";
 import { normalizeObservation } from "./normalizers/observation";
 import { normalizePatient } from "./normalizers/patient";
+import { normalizePractitioner } from "./normalizers/practitioner";
 import type { FhirResource } from "./types/fhir.types";
 import type {
   NormalizedCondition,
@@ -15,6 +17,7 @@ import type {
   NormalizedMedicationRequest,
   NormalizedObservation,
   NormalizedPatient,
+  NormalizedPractitioner,
   NormalizedResource,
 } from "./types/normal.types";
 
@@ -30,6 +33,8 @@ export function normalize(resource: FhirResource): NormalizedResource {
       return normalizeEncounter(resource);
     case "MedicationRequest":
       return normalizeMedicationRequest(resource);
+    case "Practitioner":
+      return normalizePractitioner(resource);
     default:
       throw new Error(`Unsupported FHIR resourceType: ${(resource as { resourceType?: string }).resourceType}`);
   }
@@ -43,6 +48,7 @@ export function denormalize(
   resource: NormalizedMedicationRequest,
   resourceType?: "MedicationRequest",
 ): ReturnType<typeof denormalizeMedicationRequest>;
+export function denormalize(resource: NormalizedPractitioner, resourceType?: "Practitioner"): ReturnType<typeof denormalizePractitioner>;
 export function denormalize(resource: NormalizedResource, resourceType?: NormalizedResource["resourceType"]): FhirResource;
 export function denormalize(resource: NormalizedResource, resourceType = resource.resourceType): FhirResource {
   switch (resourceType) {
@@ -56,6 +62,8 @@ export function denormalize(resource: NormalizedResource, resourceType = resourc
       return denormalizeEncounter(resource as NormalizedEncounter);
     case "MedicationRequest":
       return denormalizeMedicationRequest(resource as NormalizedMedicationRequest);
+    case "Practitioner":
+      return denormalizePractitioner(resource as NormalizedPractitioner);
     default:
       throw new Error(`Unsupported normalized resourceType: ${resourceType}`);
   }
@@ -66,9 +74,11 @@ export { denormalizeEncounter } from "./denormalizers/encounter";
 export { denormalizeMedicationRequest } from "./denormalizers/medication-request";
 export { denormalizeObservation } from "./denormalizers/observation";
 export { denormalizePatient } from "./denormalizers/patient";
+export { denormalizePractitioner } from "./denormalizers/practitioner";
 export { normalizeCondition } from "./normalizers/condition";
 export { normalizeEncounter } from "./normalizers/encounter";
 export { normalizeMedicationRequest } from "./normalizers/medication-request";
 export { normalizeObservation } from "./normalizers/observation";
 export { normalizePatient } from "./normalizers/patient";
+export { normalizePractitioner } from "./normalizers/practitioner";
 export type * from "./types/normal.types";
